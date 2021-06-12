@@ -11,6 +11,17 @@ from rest_framework import permissions
 
 def index(request):
     data = Data.objects.all()
+    a = 1
+    b = data.count()
+    c = b-20
+    for d in data:
+        if c < 0:
+            pass
+        if c > 0:
+            if a < c:
+                d.delete()
+        a = a+1
+
     template = loader.get_template('index.html')
     context = {
         'latest_question_list': data,
@@ -22,5 +33,5 @@ class DataViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Data.objects.all().order_by('-id')[:10]
+    queryset = Data.objects.all()
     serializer_class = DataSerializer
