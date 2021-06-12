@@ -22,5 +22,5 @@ class DataViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Data.objects.all()
+    queryset = Data.objects.all().order_by('-id')[:10]
     serializer_class = DataSerializer
